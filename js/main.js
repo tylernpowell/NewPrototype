@@ -13,8 +13,7 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
     var lastNote;
     var lastNoteText;
     var showNote;
-    var envelopes = [];
-    var envelopesText = [];
+    var envelope;
     var key;
     var envelopeIndex = 0;
     var keysIndex = 0;
@@ -78,7 +77,7 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
         
         lastNote = game.add.bitmapText(0, 0, 'carrier_command', '', 8);
         keysText = game.add.bitmapText(0, 0, 'carrier_command', 'x' + numberOfKeys, 8);
-        lastNoteText = 'w a s d - move\n\nspace to toggle note';
+        lastNoteText = 'w a s d - move\n\nspace to toggle note\n\nplease note this game may contain performance issues';
         showNote = true;
         
         initEnvelopes();
@@ -113,7 +112,7 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
             }
         
         
-        game.physics.arcade.overlap(envelopes[envelopeIndex], player, pickUpEnvelope);
+        game.physics.arcade.overlap(envelope, player, pickUpEnvelope);
         game.physics.arcade.collide(player, collideLayer);
         
         if(game.physics.arcade.collide(player, door) && numberOfKeys > 0)
@@ -135,11 +134,9 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
     
     function initEnvelopes()
     {
-        var i = 0;
-        envelopes.push(game.add.sprite(128, 256, 'Envelope'));
-        envelopesText.push('Use the key to open the door');
-        game.physics.enable(envelopes[i], Phaser.Physics.ARCADE);
-        ++i;
+        envelope = game.add.sprite(128, 256, 'Envelope')
+        game.physics.enable(envelope, Phaser.Physics.ARCADE);
+
     }
     
     function initKeys()
@@ -159,23 +156,70 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
     
     function pickUpEnvelope()
     {
-        lastNoteText = envelopesText[envelopeIndex];
-        envelopes[envelopeIndex].kill();
         envelopeIndex++;
+        switch(envelopeIndex)
+            {
+                case 1:
+                    lastNoteText = 'Use key on the door';
+                    envelope.x = 995;
+                    envelope.y = 440;
+                    break;
+                case 2:
+                    lastNoteText = 'Something wicked approaches...';
+                    envelope.x = 1345;
+                    envelope.y = 550;
+                    break;
+                case 3:
+                    lastNoteText = 'The air feels uneasy...';
+                    envelope.x = 2800;
+                    envelope.y = 580;
+                    break;
+                case 4:
+                    lastNoteText = 'do not let him find you';
+                    envelope.kill();
+                    break;
+                default:
+                    break;
+            }
     }
     
     function pickUpKey()
     {
         numberOfKeys++;
-        key.kill();
         keysIndex++;
+        
+        switch(keysIndex)
+            {
+                case 1:
+                    key.x = 2150;
+                    key.y = 420;
+                    break;
+                case 2:
+                    key.x = 3860;
+                    key.y = 40;
+                    break;
+                default:
+                    break;
+            }
     }
     
     function openDoor()
     {
         numberOfKeys--;
-        door.kill();
         doorIndex++;
+        
+        switch(doorIndex)
+            {
+                case 1:
+                    door.x = 4665;
+                    door.y = 450;
+                    break;
+                case 2:
+                    door.kill();
+                    break;
+                default:
+                    break;
+            }
     }
     
     function render()
@@ -189,7 +233,6 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
                 lastNote.y = player.y - 25;
                 keysText.x = player.x + 30;
                 keysText.y = player.y;
-                lastNote.updateText();
             }
         else
             {
