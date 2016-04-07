@@ -197,6 +197,6 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
                 keysText.text = '';
             }
         
-        game.debug.text('' + player.x + ', ' + player.y , 100, 100);
+        //game.debug.text('' + player.x + ', ' + player.y , 100, 100);
     }
 };
