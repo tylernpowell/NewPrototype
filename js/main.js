@@ -198,6 +198,9 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
                     key.x = 3860;
                     key.y = 40;
                     break;
+                case 3:
+                    key.kill();
+                    break;
                 default:
                     break;
             }
