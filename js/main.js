@@ -8,6 +8,7 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
     var collisionMap;
     var keys;
     var speed = 100;
+    var music;
 
     function preload() 
     {
@@ -17,6 +18,7 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
         game.load.image('BrickFloor', 'assets/BrickFloor.png');
         game.load.image('BrickWall', 'assets/BrickWall.png');
         game.load.image('BrickWall2', 'assets/BrickWall2.png');
+        game.load.audio('music', 'assets/Darkness.mp3');
     }
     function create() 
     {
@@ -51,6 +53,9 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
         player.body.collideWorldBounds = true;  
         game.camera.follow(player); 
         keys = game.input.keyboard.createCursorKeys(); 
+        
+        music = game.add.audio('music', 0.05, true);
+        music.play();
     }
 
     function update() 
