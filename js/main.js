@@ -77,7 +77,7 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
         
         lastNote = game.add.bitmapText(0, 0, 'carrier_command', '', 8);
         keysText = game.add.bitmapText(0, 0, 'carrier_command', 'x' + numberOfKeys, 8);
-        lastNoteText = 'w a s d - move\n\nspace to toggle note\n\nplease note this game may contain performance issues';
+        lastNoteText = 'arrow keys - move\n\nspace to toggle note\n\nplease note this game may contain performance issues';
         showNote = true;
         
         initEnvelopes();
