@@ -9,9 +9,7 @@ Door = function (x, y, locked, game, player) {
     this.moves = false;
 
     this.door = game.add.sprite(x,y, 'UpDoor');
-    game.physics.enable(this.door, Phaser.Physics.ARCADE);
-
- 
+    game.physics.enable(this.door, Phaser.Physics.ARCADE); 
 };
 
 window.onload = function(){
