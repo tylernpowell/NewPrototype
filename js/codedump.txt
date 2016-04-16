@@ -1,0 +1,78 @@
+ var player;
+    var layer;
+    var collideLayer;
+    var map;
+    var collisionMap;
+    var noteKey;
+    var speed = 100;
+    var music;
+    var lastNote;
+    var lastNoteText;
+    var showNote;
+    var envelope;
+    var key;
+    var envelopeIndex = 0;
+    var keysIndex = 0;
+    var numberOfKeys = 0;
+    var keysText;
+    var door;
+
+function update() 
+    {
+        //player.body.velocity.x = 0;
+        //player.body.velocity.y = 0;
+        
+        if(keys.right.isDown)
+            {
+                player.body.velocity.x = speed;
+                player.animations.play('right');
+            }
+        else if(keys.left.isDown)
+            {
+                player.body.velocity.x = -speed;
+                player.animations.play('left');
+            }
+        else if(keys.up.isDown)
+            {
+                player.body.velocity.y = -speed;
+                player.animations.play('up');
+            }
+        else if(keys.down.isDown)
+            {
+                player.body.velocity.y = speed;
+                player.animations.play('down');
+            }
+        
+        
+        game.physics.arcade.overlap(envelope, player, pickUpEnvelope);
+        game.physics.arcade.collide(player, collideLayer);
+        
+        if(game.physics.arcade.collide(player, door) && numberOfKeys > 0)
+            {
+                openDoor();
+            }
+        key.update();
+        
+        noteKey.onDown.add(toggleNote, this);
+    }
+
+function render()
+    {
+        if(showNote)
+            {
+                lastNote.text = lastNoteText;
+                keysText.text = 'x' + numberOfKeys;
+                lastNote.text.anchor(0.5, 0.5);
+                lastNote.x = player.x - (lastNote.textWidth * 0.5); //Centers text
+                lastNote.y = player.y - 25;
+                keysText.x = player.x + 30;
+                keysText.y = player.y;
+            }
+        else
+            {
+                lastNote.text = '';
+                keysText.text = '';
+            }
+        
+        //game.debug.text('' + player.x + ', ' + player.y , 100, 100);
+    }
