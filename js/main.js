@@ -14,9 +14,28 @@ Door = function (x, y, locked, game, player) {
 
 Door.prototype.update = function() {
     if(game.physics.arcade.collide(player, door) && numberofKeys  > 0)
-            {
-                openDoor();
-            }
+    {
+        openDoor();
+    }
+};
+
+Key = function(x, y, game, player) {
+    this.game = game;
+    this.player = player;
+    this.alive = true;
+    this.immovable = true;
+    this.moves = false;
+    
+    this.key = game.add.sprite(x,y, 'Key');
+    game.physics.enable(this.key, Phaser.Physics.ARCADE);
+};
+
+Key.prototype.update = function() {
+    if(game.physics.arcade.overlap(player,key))
+    {
+        pickUpKey();
+    }
+    
 };
 
 window.onload = function(){
