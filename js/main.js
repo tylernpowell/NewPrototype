@@ -28,6 +28,7 @@ Key = function(x, y, game, player) {
     
     this.key = game.add.sprite(x,y, 'Key');
     game.physics.enable(this.key, Phaser.Physics.ARCADE);
+    this.key.body.setSize(24,24,5,16);
 };
 
 Key.prototype.update = function() {
