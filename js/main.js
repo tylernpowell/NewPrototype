@@ -1,3 +1,19 @@
+Door = function (x, y, locked, game, player) {
+
+    var lock = locked;
+
+    this.game = game;
+    this.player = player;
+    this.alive = true;
+    this.immovable = true;
+    this.moves = false;
+
+    this.door = game.add.sprite(x,y, 'UpDoor');
+    game.physics.enable(this.door, Phaser.Physics.ARCADE);
+
+ 
+};
+
 window.onload = function(){
     
 var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update, render: render});
