@@ -12,6 +12,13 @@ Door = function (x, y, locked, game, player) {
     game.physics.enable(this.door, Phaser.Physics.ARCADE); 
 };
 
+Door.prototype.update = function() {
+    if(game.physics.arcade.collide(player, door) && numberofKeys  > 0)
+            {
+                openDoor();
+            }
+};
+
 window.onload = function(){
     
 var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update, render: render});
