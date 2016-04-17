@@ -48,18 +48,8 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
         music = game.add.audio('music', 0.05, true);
         music.play();
         
-        //noteKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-        
-        //lastNote = game.add.bitmapText(0, 0, 'carrier_command', '', 8);
-        //keysText = game.add.bitmapText(0, 0, 'carrier_command', 'x' + numberOfKeys, 8);
-        //lastNoteText = 'arrow keys - move\n\nspace to toggle note\n\ngame may contain performance issues';
-        //showNote = true;
-        
-        //initEnvelopes();
-        //initKeys();
         player = new Player(game, collideLayer, 128, 128);
         keys = new Key(0, game, player, 256, 256);
-        //initDoors();
     }
 
     function update() 
