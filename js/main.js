@@ -42,6 +42,18 @@ Key.prototype.update = function() {
 window.onload = function(){
     
 var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update, render: render});
+
+    // States initialized here.
+    game.state.add("Init", init);
+    game.state.add("Preload", preload);
+    game.state.add("Intro", intro);
+    game.state.add("Floor1", floor1);
+    game.state.add("Floor2", floor2);
+    game.state.add("Basement", basement);
+    game.state.add("Attic", attic);
+    game.state.add("DeadEnd", deadend);
+    game.state.add("GoodEnd", goodend);
+
     var player;
     var layer;
     var collideLayer;
