@@ -2,7 +2,7 @@
  "layers":[
         {
          "draworder":"topdown",
-         "height":18,
+         "height":0,
          "name":"Secrets",
          "objects":[
                 {
@@ -44,7 +44,7 @@
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
-         "width":20,
+         "width":0,
          "x":0,
          "y":0
         }, 
@@ -72,7 +72,7 @@
         }, 
         {
          "draworder":"topdown",
-         "height":18,
+         "height":0,
          "name":"Objects",
          "objects":[
                 {
@@ -198,7 +198,7 @@
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
-         "width":20,
+         "width":0,
          "x":0,
          "y":0
         }],
@@ -208,65 +208,8 @@
  "tileheight":32,
  "tilesets":[
         {
-         "columns":0,
          "firstgid":1,
-         "margin":0,
-         "name":"CreepyMansion",
-         "spacing":0,
-         "tilecount":12,
-         "tileheight":64,
-         "tiles":
-            {
-             "0":
-                {
-                 "image":"BrickFloor.png"
-                },
-             "1":
-                {
-                 "image":"BrickWall.png"
-                },
-             "10":
-                {
-                 "image":"Stairs_DU.png"
-                },
-             "11":
-                {
-                 "image":"Stairs_LR.png"
-                },
-             "12":
-                {
-                 "image":"Stairs_RL.png"
-                },
-             "13":
-                {
-                 "image":"Stairs_UD.png"
-                },
-             "2":
-                {
-                 "image":"BrickWall2.png"
-                },
-             "3":
-                {
-                 "image":"coin.png"
-                },
-             "4":
-                {
-                 "image":"door.png"
-                },
-             "5":
-                {
-                 "image":"Envelope.png"
-                },
-             "6":
-                {
-                 "image":"Key.png"
-                },
-             "7":
-                {
-                 "image":"door2.png"
-                }
-            },
-         "tilewidth":64
+         "source":"MansionTiles.tsx"
         }],
  "tilewidth":32,
  "version":1,
