@@ -7,9 +7,10 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
     var map;
     var collisionMap;
     var music;
-    var envelopes;
-    var keys;
-    var doors;
+    var envelopes = [];
+    var keys = [];
+    var doors = [];
+    var enemy;
 
     function preload() 
     {
@@ -17,6 +18,7 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
         game.load.tilemap('level1', 'assets/level_prototype.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.tilemap('level1Col', 'assets/level_collision.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.spritesheet('character', 'assets/Character.png', 32, 34);
+        game.load.spritesheet('ghost', 'assets/ghost.png', 32, 32);
         game.load.image('BrickFloor', 'assets/BrickFloor.png');
         game.load.image('BrickWall', 'assets/BrickWall.png');
         game.load.image('BrickWall2', 'assets/BrickWall2.png');
@@ -48,14 +50,35 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
         music = game.add.audio('music', 0.05, true);
         music.play();
         
-        player = new Player(game, collideLayer, 128, 128);
-        keys = new Key(0, game, player, 256, 256);
+        player = new Player(game, collideLayer, 165, 128);
+        keys.push(new Key(0, game, player, 256, 256));
+        doors.push(new Door(0, game, player, 128, 256));
+        envelopes.push(new Note('hello world!!!', game, player, 128, 64));
+        envelopes.push(new Note('this is a note', game, player, 128, 312));
+        envelopes.push(new Note('this is also a note', game, player, 256, 275));
+        envelopes.push(new Note('next note', game, player, 256, 280));
+        enemy = new Enemy(game, player, 128, 326);
     }
 
     function update() 
     {   
         player.update();
-        keys.update();
+        
+        var i = 0;
+        for(i = 0; i < keys.length; ++i)
+            {
+                keys[i].update();
+            }
+        for(i = 0; i < doors.length; ++i)
+            {
+                doors[i].update();
+            }
+        for(i = 0; i < envelopes.length; ++i)
+            {
+                envelopes[i].update();
+        }
+
+        enemy.update();
     }
     
 
