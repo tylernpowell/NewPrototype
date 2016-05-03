@@ -11,6 +11,7 @@ Player = function(game, collideLayer, xPos, yPos)
     this.pills = false;
     this.knife = false;
     this.atticKey = false;
+    this.victory = false;
     
     this.noteText = game.add.bitmapText(0, 0, 'carrier_command', '', 8);
     this.keysText = game.add.bitmapText(0, 0, 'carrier_command', 'x' + this.numberOfKeys, 8);
@@ -233,5 +234,20 @@ Player.prototype.pickupPills = function(pills)
     this.displayNote = true;
     
     pills.kill();
+}
+
+Player.prototype.openAttic = function(door)
+{
+    if(this.atticKey)
+        {
+            this.game.add.sprite(this.player.x - 768, this.player.y - 768, 'victory');
+            this.victory = true;
+            this.player.kill();
+        }
+    else
+        {
+            this.currentNote = 'looks like a door to the attic.';
+            this.displayNote = true;
+        }
 }
 

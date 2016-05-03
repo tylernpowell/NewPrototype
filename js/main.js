@@ -13,6 +13,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
     var knife;
     var pills;
     var cauldron;
+    var attic;
 
     function preload() 
     {
@@ -30,6 +31,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
         game.load.image('pills', 'assets/PixelPills.png');
         game.load.image('cauldron', 'assets/Cauldron.png');
         game.load.image('vision', 'assets/Vision.png');
+        game.load.image('victory', 'assets/Victory.png');
         game.load.audio('music', 'assets/Darkness.mp3');
     }
     function create() 
@@ -51,9 +53,9 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
         music = game.add.audio('music', 0.05, true);
         music.play();
         
-        player = new Player(game, collideLayer, 165, 1500);
-        
-        //enemy = new Enemy(game, player, 128, 326);
+        //player = new Player(game, collideLayer, 165, 1500);
+        player = new Player(game, collideLayer, 2200, 1118);
+        enemy = new Enemy(game, player, 128, 326);
         
         initObjects();
     }
@@ -76,7 +78,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
                 envelopes[i].update();
         }
 
-        //enemy.update();
+        enemy.update();
         
         if(game.physics.arcade.collide(player.player, heart))
             {
@@ -93,6 +95,11 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
         if(game.physics.arcade.collide(player.player, cauldron))
             {
                 player.useCauldron();
+            }
+        
+        if(player.victory)
+            {
+                music.stop();
             }
         
     }
@@ -129,6 +136,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
         doors.push(new Door2(1, game, player, 736, 1340));
         doors.push(new Door2(2, game, player, 736, 1500));
         doors.push(new Door(3, game, player, 996, 1408));
+        doors.push(new Door3(0, game, player, 2272, 1118));
         envelopes.push(new Note('hello world!!!', game, player, 128, 64));
         envelopes.push(new Note('this is a note', game, player, 128, 312));
         envelopes.push(new Note('this is also a note', game, player, 256, 275));
