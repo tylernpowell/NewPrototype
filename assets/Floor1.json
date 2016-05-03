@@ -10,6 +10,10 @@
                  "height":32,
                  "id":1,
                  "name":"",
+                 "properties":
+                    {
+
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -22,6 +26,10 @@
                  "height":32,
                  "id":2,
                  "name":"",
+                 "properties":
+                    {
+
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -34,6 +42,10 @@
                  "height":32,
                  "id":3,
                  "name":"",
+                 "properties":
+                    {
+
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -46,6 +58,10 @@
                  "height":32,
                  "id":27,
                  "name":"",
+                 "properties":
+                    {
+
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -92,6 +108,10 @@
                  "height":64,
                  "id":4,
                  "name":"",
+                 "properties":
+                    {
+
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -104,6 +124,10 @@
                  "height":16,
                  "id":5,
                  "name":"",
+                 "properties":
+                    {
+
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -116,6 +140,10 @@
                  "height":16,
                  "id":16,
                  "name":"",
+                 "properties":
+                    {
+
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -128,6 +156,10 @@
                  "height":32,
                  "id":17,
                  "name":"",
+                 "properties":
+                    {
+
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -140,6 +172,10 @@
                  "height":64,
                  "id":18,
                  "name":"",
+                 "properties":
+                    {
+
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -152,6 +188,10 @@
                  "height":64,
                  "id":19,
                  "name":"",
+                 "properties":
+                    {
+
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -164,6 +204,10 @@
                  "height":16,
                  "id":25,
                  "name":"",
+                 "properties":
+                    {
+
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -176,6 +220,10 @@
                  "height":16,
                  "id":26,
                  "name":"",
+                 "properties":
+                    {
+
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -188,6 +236,10 @@
                  "height":16,
                  "id":28,
                  "name":"",
+                 "properties":
+                    {
+
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -204,6 +256,10 @@
         }],
  "nextobjectid":29,
  "orientation":"orthogonal",
+ "properties":
+    {
+
+    },
  "renderorder":"right-down",
  "tileheight":32,
  "tilesets":[
@@ -212,6 +268,10 @@
          "firstgid":1,
          "margin":0,
          "name":"Mansion",
+         "properties":
+            {
+
+            },
          "spacing":0,
          "tilecount":16,
          "tileheight":64,
