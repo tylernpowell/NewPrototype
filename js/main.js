@@ -87,6 +87,7 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
         game.load.image('Envelope', 'assets/Envelope.png');
         game.load.image('Key', 'assets/Key.png');
         game.load.image('Door', 'assets/door.png');
+        game.load.image('Loading', 'assets/loading.png');
         game.load.audio('music', 'assets/Darkness.mp3');
     }
     function create() 
