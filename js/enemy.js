@@ -1,7 +1,7 @@
 Enemy = function (game, player, xPos, yPos) 
 {
     
-    this.enemySpeed = 85;
+    this.enemySpeed = 75;
     this.movementTime = 200;
     this.movementDelay = 500;
     this.delayTimer = 0;

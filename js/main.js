@@ -5,6 +5,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
     var collideLayer;
     var map;
     var music;
+    var doorslam;
+    var footstep;
     var endTheme;
     var envelopes = [];
     var keys = [];
@@ -15,6 +17,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
     var pills;
     var cauldron;
     var attic;
+    var slamTimer;
+    var footTimer;
 
     function preload() 
     {
@@ -36,6 +40,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
         game.load.audio('music', 'assets/Darkness.mp3');
         game.load.audio('end', 'assets/EndTheme5.mp3');
         game.load.audio('death', 'assets/Guy-Scream.wav');
+        game.load.audio('footstep', 'assets/FOOTSTEPPING.wav');
+        game.load.audio('doorslam', 'assets/Door Slam.wav');
     }
     function create() 
     {
@@ -52,14 +58,17 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
         collideLayer.resizeWorld();
         map.setCollision([3, 5, 6, 11, 12], true, collideLayer);
         
-        
+        footstep = game.add.audio('footstep', 0.1, false);
+        doorslam = game.add.audio('doorslam', 0.1, false);
         endTheme = game.add.audio('end', 0.05, true);
-        music = game.add.audio('music', 0.05, true);
+        music = game.add.audio('music', 0.03, true);
         music.play();
         
         player = new Player(game, collideLayer, 165, 1500);
         //player = new Player(game, collideLayer, 2200, 1118);
         enemy = new Enemy(game, player, 128, 326);
+        slamTimer = 1000;
+        footTimer = 1500;
         
         initObjects();
     }
@@ -108,6 +117,17 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
                 player.victory = false;
             }
         
+        if(game.time.now >= slamTimer)
+            {
+                doorslam.play();
+                slamTimer = game.time.now + 30000;
+            }
+        if(game.time.now >= footTimer)
+            {
+                footstep.play();
+                footTimer = game.time.now + 20000;
+            }
+        
     }
     
 
@@ -151,7 +171,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
         envelopes.push(new Note('The project started early March...', game, player, 1820, 1659));
         envelopes.push(new Note('THE NOTES ARE TAINTED!!!', game, player, 1418, 1194));
         envelopes.push(new Note('The key is the three ingredients...', game, player, 1076, 2059));
-        envelopes.push(new Note('I made this darkroom so that we could develop film on the creature\'s development', game, player, 784, 1414));
+        envelopes.push(new Note('I made this darkroom so that we could develop \n\nfilm on the creature\'s development', game, player, 784, 1414));
         envelopes.push(new Note('They\'re going to shut us down', game, player, 882, 601));
         envelopes.push(new Note('My career is over, and there’s not enough alcohol to help me.', game, player, 1524, 937));
     }
