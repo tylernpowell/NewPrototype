@@ -173,5 +173,7 @@ Player.prototype.kill = function()
     this.isAlive = false;
     this.displayNote = false;
     this.displayAll = false;
+    
+    this.game.debug.text('' + this.player.x + ', ' + this.player.y , 100, 100);
 }
 
