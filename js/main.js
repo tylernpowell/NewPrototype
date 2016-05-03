@@ -22,6 +22,7 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
         game.load.image('Envelope', 'assets/Envelope.png');
         game.load.image('Key', 'assets/Key.png');
         game.load.image('Door', 'assets/door.png');
+        game.load.image('Door2', 'assets/door2.png');
         game.load.audio('music', 'assets/Darkness.mp3');
     }
     function create() 
@@ -33,10 +34,12 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
         
         map = game.add.tilemap('level1');
         map.addTilesetImage('Mansion-tiles'); 
-        collideLayer = map.createLayer('Wall');
-        collideLayer.resizeWorld();
         layer = map.createLayer('Floor');
         layer.resizeWorld();
+        collideLayer = map.createLayer('Wall');
+        collideLayer.resizeWorld();
+        
+        
         
         map.setCollision([3, 11, 12], true, collideLayer);
         
@@ -47,11 +50,14 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
         player = new Player(game, collideLayer, 165, 1500);
         keys.push(new Key(0, game, player, 256, 256));
         doors.push(new Door(0, game, player, 128, 256));
+        doors.push(new Door2(1, game, player, 736, 1340));
+        doors.push(new Door2(2, game, player, 736, 1500));
+        doors.push(new Door(3, game, player, 996, 1408));
         envelopes.push(new Note('hello world!!!', game, player, 128, 64));
         envelopes.push(new Note('this is a note', game, player, 128, 312));
         envelopes.push(new Note('this is also a note', game, player, 256, 275));
         envelopes.push(new Note('next note', game, player, 256, 280));
-        enemy = new Enemy(game, player, 128, 326);
+        //enemy = new Enemy(game, player, 128, 326);
     }
 
     function update() 
@@ -72,7 +78,7 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
                 envelopes[i].update();
         }
 
-        enemy.update();
+        //enemy.update();
     }
     
 
