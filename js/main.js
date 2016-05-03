@@ -79,5 +79,10 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
     function render()
     {
         player.render();
+        
+        if(player != null)
+            {
+                game.debug.text('' + player.player.x + ', ' + player.player.y, 100, 100);
+            }
     }
 };
