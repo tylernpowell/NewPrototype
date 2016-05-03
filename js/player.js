@@ -20,6 +20,7 @@ Player = function(game, collideLayer, xPos, yPos)
     this.game = game;
     this.colliderLayer = collideLayer;
     this.player = game.add.sprite(xPos, yPos, 'character');
+    this.vision = game.add.sprite(xPos, yPos, 'vision');
     
     this.player.animations.add('down', [0, 1, 2], 10, false);
     this.player.animations.add('left', [3, 4, 5], 10, false);
@@ -50,6 +51,8 @@ Player.prototype.update = function()
 
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;
+    this.vision.x = this.player.x - 768;
+    this.vision.y = this.player.y - 768;
     
     if(this.movementKeys.right.isDown)
             {

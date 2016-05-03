@@ -1,6 +1,6 @@
 window.onload = function(){
     
-var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update, render: render});
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update, render: render});
     var player;
     var collideLayer;
     var map;
@@ -29,6 +29,7 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
         game.load.image('knife', 'assets/PixelKnife.png');
         game.load.image('pills', 'assets/PixelPills.png');
         game.load.image('cauldron', 'assets/Cauldron.png');
+        game.load.image('vision', 'assets/Vision.png');
         game.load.audio('music', 'assets/Darkness.mp3');
     }
     function create() 
@@ -44,9 +45,6 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
         layer.resizeWorld();
         collideLayer = map.createLayer('Wall');
         collideLayer.resizeWorld();
-        
-        
-        
         map.setCollision([3, 5, 6, 11, 12], true, collideLayer);
         
         
@@ -125,8 +123,9 @@ var game = new Phaser.Game(1024, 600, Phaser.AUTO, 'game', { preload: preload, c
         cauldron.body.immovable = true;
         cauldron.body.moves = false;
         
-        keys.push(new Key(0, game, player, 256, 256));
-        doors.push(new Door(0, game, player, 128, 256));
+        keys.push(new Key(0, game, player, 1453, 2055));
+        keys.push(new Key(1, game, player, 1675, 613));
+        keys.push(new Key(1, game, player, 2020, 1422));
         doors.push(new Door2(1, game, player, 736, 1340));
         doors.push(new Door2(2, game, player, 736, 1500));
         doors.push(new Door(3, game, player, 996, 1408));
