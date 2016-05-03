@@ -13,6 +13,8 @@ Player = function(game, collideLayer, xPos, yPos)
     this.atticKey = false;
     this.victory = false;
     
+    this.death = game.add.audio('death', 0.05, false);
+    
     this.noteText = game.add.bitmapText(0, 0, 'carrier_command', '', 8);
     this.keysText = game.add.bitmapText(0, 0, 'carrier_command', 'x' + this.numberOfKeys, 8);
     this.allText = game.add.bitmapText(128, 128, 'carrier_command', '', 8);
@@ -177,6 +179,7 @@ Player.prototype.displayAllNotes = function()
 Player.prototype.kill = function()
 {
     this.player.kill();
+    this.death.play();
     this.isAlive = false;
     this.displayNote = false;
     this.displayAll = false;

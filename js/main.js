@@ -5,6 +5,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
     var collideLayer;
     var map;
     var music;
+    var endTheme;
     var envelopes = [];
     var keys = [];
     var doors = [];
@@ -33,6 +34,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
         game.load.image('vision', 'assets/Vision.png');
         game.load.image('victory', 'assets/Victory.png');
         game.load.audio('music', 'assets/Darkness.mp3');
+        game.load.audio('end', 'assets/EndTheme5.mp3');
+        game.load.audio('death', 'assets/Guy-Scream.wav');
     }
     function create() 
     {
@@ -50,11 +53,12 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
         map.setCollision([3, 5, 6, 11, 12], true, collideLayer);
         
         
+        endTheme = game.add.audio('end', 0.05, true);
         music = game.add.audio('music', 0.05, true);
         music.play();
         
-        //player = new Player(game, collideLayer, 165, 1500);
-        player = new Player(game, collideLayer, 2200, 1118);
+        player = new Player(game, collideLayer, 165, 1500);
+        //player = new Player(game, collideLayer, 2200, 1118);
         enemy = new Enemy(game, player, 128, 326);
         
         initObjects();
@@ -100,6 +104,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
         if(player.victory)
             {
                 music.stop();
+                endTheme.play();
+                player.victory = false;
             }
         
     }
@@ -111,7 +117,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
         
         if(player != null)
             {
-                game.debug.text('' + player.player.x + ', ' + player.player.y, 100, 100);
+                //game.debug.text('' + player.player.x + ', ' + player.player.y, 100, 100);
             }
     }
     
@@ -130,16 +136,23 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
         cauldron.body.immovable = true;
         cauldron.body.moves = false;
         
+        //initialize keys
         keys.push(new Key(0, game, player, 1453, 2055));
         keys.push(new Key(1, game, player, 1675, 613));
         keys.push(new Key(1, game, player, 2020, 1422));
+        //initialize doors
         doors.push(new Door2(1, game, player, 736, 1340));
         doors.push(new Door2(2, game, player, 736, 1500));
         doors.push(new Door(3, game, player, 996, 1408));
         doors.push(new Door3(0, game, player, 2272, 1118));
-        envelopes.push(new Note('hello world!!!', game, player, 128, 64));
-        envelopes.push(new Note('this is a note', game, player, 128, 312));
-        envelopes.push(new Note('this is also a note', game, player, 256, 275));
-        envelopes.push(new Note('next note', game, player, 256, 280));
+        //initialize envelopes
+        envelopes.push(new Note('The kids are gone. Anyone who finds this is too late...', game, player, 208, 2346));
+        envelopes.push(new Note('The experiment went wrong.\n\n I fear as though I unleashed something', game, player, 320, 1445));
+        envelopes.push(new Note('The project started early March...', game, player, 1820, 1659));
+        envelopes.push(new Note('THE NOTES ARE TAINTED!!!', game, player, 1418, 1194));
+        envelopes.push(new Note('The key is the three ingredients...', game, player, 1076, 2059));
+        envelopes.push(new Note('I made this darkroom so that we could develop film on the creature\'s development', game, player, 784, 1414));
+        envelopes.push(new Note('They\'re going to shut us down', game, player, 882, 601));
+        envelopes.push(new Note('My career is over, and there’s not enough alcohol to help me.', game, player, 1524, 937));
     }
 };
