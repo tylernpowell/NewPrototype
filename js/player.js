@@ -1,5 +1,3 @@
-///TODO Hold down a button to display all text on the screen
-
 Player = function(game, collideLayer, xPos, yPos)
 {
     this.playerSpeed = 100;                                                                                     //Player speed
@@ -9,6 +7,10 @@ Player = function(game, collideLayer, xPos, yPos)
     this.displayAll = false;                                                                                    //Display all notes on screen
     this.isAlive = true;
     this.currentNote = 'arrow keys - move\n\nT to toggle note\n\nhold space to show all notes';                  //Starting text to display
+    this.heart = false;
+    this.pills = false;
+    this.knife = false;
+    this.atticKey = false;
     
     this.noteText = game.add.bitmapText(0, 0, 'carrier_command', '', 8);
     this.keysText = game.add.bitmapText(0, 0, 'carrier_command', 'x' + this.numberOfKeys, 8);
@@ -147,6 +149,7 @@ Player.prototype.pickupNote = function(note)
 {
     this.notesList.push(note.text);
     this.currentNote = note.text;
+    this.displayNote = true;
     note.kill();
 }
 
@@ -174,6 +177,58 @@ Player.prototype.kill = function()
     this.displayNote = false;
     this.displayAll = false;
     
-    this.game.debug.text('' + this.player.x + ', ' + this.player.y , 100, 100);
+    
+}
+
+Player.prototype.useCauldron = function()
+{
+    this.currentNote = 'it\'s a cauldron.';
+    this.displayNote = true;
+    if(this.heart && this.knife && this.pills)
+        {
+            this.atticKey = true;
+            this.notesList.push('Attic key found.');
+            this.currentNote = 'Attic key found.';
+        }
+    
+    
+}
+
+Player.prototype.pickupHeart = function(heart)
+{
+    this.heart = true;
+    var n = 'Heart found.';
+    
+    this.notesList.push(n);
+    this.currentNote = n;
+    this.displayNote = true;
+    
+    heart.kill();
+}
+
+Player.prototype.pickupKnife = function(knife)
+{
+    this.knife = true;
+    
+    var n = 'Knife found.';
+    
+    this.notesList.push(n);
+    this.currentNote = n;
+    this.displayNote = true;
+    
+    knife.kill();
+}
+
+Player.prototype.pickupPills = function(pills)
+{
+    this.pills = true;
+    
+    var n = 'Pills found.';
+    
+    this.notesList.push(n);
+    this.currentNote = n;
+    this.displayNote = true;
+    
+    pills.kill();
 }
 
